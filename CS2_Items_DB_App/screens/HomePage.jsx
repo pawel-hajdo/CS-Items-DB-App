@@ -2,12 +2,12 @@ import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {globalStyles} from "../styles/globalStyles";
 import ItemTile from "../components/ItemTile";
 import ItemTileBig from "../components/itemTileBig";
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
 
     return (
         <View style={globalStyles.container}>
+            <Text style={[globalStyles.headlineText, {fontSize: 35}]}>CS2 DB</Text>
             <ScrollView style={styles.scrollContainer}>
-                <Text style={[globalStyles.headlineText, {fontSize: 35}]}>CS2 DB</Text>
                 <Text style={globalStyles.headlineText}>Latest</Text>
                 <View style={styles.rowContainer}>
                     <ItemTile itemName="Kilowatt Case" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_33_png.png"}></ItemTile>
@@ -41,16 +41,14 @@ const HomePage = () => {
 const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
-        height: '85%',
-        marginBottom: "3%",
+        height: '90%',
     },
     rowContainer: {
-        paddingTop: 8,
+       // paddingTop: 8,
         paddingBottom: 8,
         flexDirection: "row",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        marginTop: 4
     },
     watchlistText: {
         flexDirection: "row",

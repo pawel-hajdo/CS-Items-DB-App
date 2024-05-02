@@ -9,7 +9,8 @@ export const globalStyles = StyleSheet.create({
     headlineText: {
         color: '#FFFFFF',
         fontSize: 18,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        marginBottom: 4,
     },
     secondaryText: {
         color: '#FFFFFF',
