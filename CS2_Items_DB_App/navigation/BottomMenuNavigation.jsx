@@ -24,9 +24,10 @@ function BottomMenuNavigation() {
                     }
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'purple',
+                tabBarActiveTintColor: 'orange',
                 tabBarInactiveTintColor: 'grey',
                 headerShown: false,
+                tabBarStyle: {backgroundColor: '#1B1E28', borderColor: '#1B1E28', paddingBottom: 4}
         })}
         >
             <Tab.Screen name="Home" component={HomePage} />
