@@ -55,7 +55,7 @@ export const getPatchesFromApi = async () => {
     }
 }
 
-export const getGraffitiesFromApi = async () => {
+export const getGraffitiFromApi = async () => {
     try {
         const response = await fetch(baseUrl + '/graffiti.json')
         return await response.json();

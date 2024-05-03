@@ -2,19 +2,8 @@ import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {globalStyles} from "../styles/globalStyles";
 import ItemTile from "../components/ItemTile";
 import ItemTileBig from "../components/itemTileBig";
-import {useEffect, useState} from "react";
-import {getCratesFromApi, getSkinsFromApi} from "../api/SkinsApiManager";
 const HomePage = ({ navigation }) => {
 
-    const [crates, setCrates] = useState([]);
-    const [skins, setSkins] = useState([]);
-    useEffect(()=>{
-        getCratesFromApi().then(setCrates);
-        getSkinsFromApi().then(setSkins);
-    },[])
-
-    //console.log(crates);
-    console.log(skins);
     return (
         <View style={globalStyles.container}>
             <Text style={[globalStyles.headlineText, {fontSize: 35}]}>CS2 DB</Text>
