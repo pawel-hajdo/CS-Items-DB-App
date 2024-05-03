@@ -7,7 +7,7 @@ const HomePage = ({ navigation }) => {
     return (
         <View style={globalStyles.container}>
             <Text style={[globalStyles.headlineText, {fontSize: 35}]}>CS2 DB</Text>
-            <ScrollView style={styles.scrollContainer}>
+            <ScrollView>
                 <Text style={globalStyles.headlineText}>Latest</Text>
                 <View style={styles.rowContainer}>
                     <ItemTile itemName="Kilowatt Case" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_33_png.png"}></ItemTile>
@@ -39,10 +39,6 @@ const HomePage = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    scrollContainer: {
-        flexGrow: 1,
-        height: '90%',
-    },
     rowContainer: {
        // paddingTop: 8,
         paddingBottom: 8,
