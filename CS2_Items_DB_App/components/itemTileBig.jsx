@@ -1,9 +1,15 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ItemQualityBar from "./ItemQualityBar";
-const ItemTile = ({itemName, itemImage}) => {
+const ItemTileBig = ({itemName, itemImage, navigation}) => {
+
+    const navigateToCategorySearch = (categoryName) => {
+        navigation.navigate('CategorySearch', { category: categoryName });
+    };
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container}
+            onPress={() => navigateToCategorySearch(itemName)}
+        >
             <Image source={{ uri: itemImage }} style={styles.itemImage} />
             <Text style={styles.itemName}>{itemName}</Text>
         </TouchableOpacity>
@@ -31,5 +37,5 @@ const styles = StyleSheet.create({
         height: 85,
     }
 });
-export default ItemTile;
+export default ItemTileBig;
 

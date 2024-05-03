@@ -3,9 +3,23 @@ import HomePage from "../screens/HomePage";
 import SettingsPage from "../screens/SettingsPage";
 import WatchlistPage from "../screens/WatchlistPage";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
+import { createStackNavigator } from '@react-navigation/stack';
+import CategorySearchPage from "../screens/CategorySearchPage";
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+function StackNavigation() {
+    return(
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+        >
+            <Stack.Screen name="Home" component={HomePage}></Stack.Screen>
+            <Stack.Screen name="CategorySearch" component={CategorySearchPage}></Stack.Screen>
+        </Stack.Navigator>
+        )
+}
 function BottomMenuNavigation() {
     return (
         <Tab.Navigator
@@ -30,7 +44,7 @@ function BottomMenuNavigation() {
                 tabBarStyle: {backgroundColor: '#1B1E28', borderColor: '#1B1E28', paddingBottom: 4}
         })}
         >
-            <Tab.Screen name="Home" component={HomePage} />
+            <Tab.Screen name="Home" component={StackNavigation} />
             <Tab.Screen name="Watchlist" component={WatchlistPage}/>
             <Tab.Screen name="Settings" component={SettingsPage} />
         </Tab.Navigator>

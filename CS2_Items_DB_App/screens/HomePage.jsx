@@ -26,12 +26,12 @@ const HomePage = ({ navigation }) => {
                 </View>
                 <Text style={globalStyles.headlineText}>Search for</Text>
                 <View style={styles.rowContainer}>
-                    <ItemTileBig itemName= "Cases" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_30_png.png"}></ItemTileBig>
-                    <ItemTileBig itemName= "Collections" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_op10_ancient_png.png"}></ItemTileBig>
-                    <ItemTileBig itemName= "Agents" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/characters/customplayer_ctm_fbi_variantb_png.png"}></ItemTileBig>
-                    <ItemTileBig itemName= "Tournament stickers" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_cph2024_contenders_png.png"}></ItemTileBig>
-                    <ItemTileBig itemName= "Graffities" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/stickers/valve_sprays/howling_dawn_png.png"}></ItemTileBig>
-                    <ItemTileBig itemName= "Music kits" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/music_kits/timhuling_01_png.png"}></ItemTileBig>
+                    <ItemTileBig itemName= "Cases" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_30_png.png"} navigation={navigation}></ItemTileBig>
+                    <ItemTileBig itemName= "Collections" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_op10_ancient_png.png"} navigation={navigation}></ItemTileBig>
+                    <ItemTileBig itemName= "Agents" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/characters/customplayer_ctm_fbi_variantb_png.png"} navigation={navigation}></ItemTileBig>
+                    <ItemTileBig itemName= "Tournament stickers" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_cph2024_contenders_png.png"} navigation={navigation}></ItemTileBig>
+                    <ItemTileBig itemName= "Graffities" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/stickers/valve_sprays/howling_dawn_png.png"} navigation={navigation}></ItemTileBig>
+                    <ItemTileBig itemName= "Music kits" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/music_kits/timhuling_01_png.png"} navigation={navigation}></ItemTileBig>
                 </View>
             </ScrollView>
         </View>
