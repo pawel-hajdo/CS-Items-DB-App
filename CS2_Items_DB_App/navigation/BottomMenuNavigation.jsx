@@ -5,6 +5,7 @@ import WatchlistPage from "../screens/WatchlistPage";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from '@react-navigation/stack';
 import CategorySearchPage from "../screens/CategorySearchPage";
+import boxItemsPage from "../screens/BoxItemsPage";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -15,8 +16,9 @@ function StackNavigation() {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Home" component={HomePage}></Stack.Screen>
-            <Stack.Screen name="CategorySearch" component={CategorySearchPage}></Stack.Screen>
+            <Stack.Screen name="Home" component={HomePage}/>
+            <Stack.Screen name="CategorySearch" component={CategorySearchPage}/>
+            <Stack.Screen name="BoxItemsPage" component={boxItemsPage}/>
         </Stack.Navigator>
         )
 }

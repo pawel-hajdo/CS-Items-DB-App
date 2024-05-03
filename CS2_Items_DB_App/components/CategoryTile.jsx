@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ItemQualityBar from "./ItemQualityBar";
-const ItemTileBig = ({itemName, itemImage, navigation}) => {
+const CategoryTile = ({itemName, itemImage, navigation}) => {
 
     const navigateToCategorySearch = (categoryName) => {
         navigation.navigate('CategorySearch', { category: categoryName });
@@ -37,5 +37,5 @@ const styles = StyleSheet.create({
         height: 85,
     }
 });
-export default ItemTileBig;
+export default CategoryTile;
 

@@ -1,15 +1,17 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ItemQualityBar from "./ItemQualityBar";
-const ItemTile = ({itemName, itemImage, itemQuality}) => {
-    const hasQuality = !!itemQuality;
-    const containerHeight = hasQuality ? 120 : 100;
+const BoxTile = ({boxName, boxImage, navigation}) => {
+
+    const navigateToBoxItems = (boxName) => {
+        navigation.navigate('BoxItemsPage', { boxName: boxName });
+    }
 
     return (
-        <TouchableOpacity style={[styles.container, { height: containerHeight }]}>
-              <Text style={styles.itemName}>{itemName}</Text>
-              <Image source={{ uri: itemImage }} style={styles.itemImage} />
-
-              {hasQuality && <ItemQualityBar quality={itemQuality} />}
+        <TouchableOpacity style={styles.container}
+            onPress={()=>navigateToBoxItems(boxName)}
+        >
+              <Text style={styles.boxName}>{boxName}</Text>
+              <Image source={{ uri: boxImage }} style={styles.boxImage} />
         </TouchableOpacity>
     );
 }
@@ -23,16 +25,16 @@ const styles = StyleSheet.create({
        justifyContent: "center",
        alignItems: "center",
    },
-   itemName: {
+   boxName: {
        color: '#FFFFFF',
        fontSize: 10,
        fontWeight: "bold",
        textAlign: "center"
    },
-   itemImage: {
+   boxImage: {
        width: 90,
        height: 70,
    }
 });
-export default ItemTile;
+export default BoxTile;
 

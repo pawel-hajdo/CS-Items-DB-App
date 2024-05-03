@@ -1,7 +1,7 @@
 import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {globalStyles} from "../styles/globalStyles";
-import ItemTile from "../components/ItemTile";
-import ItemTileBig from "../components/itemTileBig";
+import BoxTile from "../components/boxTile";
+import CategoryTile from "../components/CategoryTile";
 const HomePage = ({ navigation }) => {
 
     return (
@@ -10,9 +10,9 @@ const HomePage = ({ navigation }) => {
             <ScrollView>
                 <Text style={globalStyles.headlineText}>Latest</Text>
                 <View style={styles.rowContainer}>
-                    <ItemTile itemName="Kilowatt Case" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_33_png.png"}></ItemTile>
-                    <ItemTile itemName="Ambush Sticker Capsule" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_community_2024_capsule_png.png"}></ItemTile>
-                    <ItemTile itemName="NIGHTMODE Music Kit Box" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_musickit_nightmode_capsule_png.png"}></ItemTile>
+                    <BoxTile boxName="Kilowatt Case" boxImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_33_png.png"} navigation={navigation}></BoxTile>
+                    <BoxTile boxName="Ambush Sticker Capsule" boxImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_community_2024_capsule_png.png"} navigation={navigation}></BoxTile>
+                    <BoxTile boxName="NIGHTMODE Music Kit Box" boxImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_musickit_nightmode_capsule_png.png"} navigation={navigation}></BoxTile>
                 </View>
                 <View style={styles.watchlistText}>
                     <Text style={globalStyles.headlineText}>From your watchlist</Text>
@@ -26,12 +26,12 @@ const HomePage = ({ navigation }) => {
                 </View>
                 <Text style={globalStyles.headlineText}>Search for</Text>
                 <View style={styles.rowContainer}>
-                    <ItemTileBig itemName= "Cases" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_30_png.png"} navigation={navigation}></ItemTileBig>
-                    <ItemTileBig itemName= "Collections" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_op10_ancient_png.png"} navigation={navigation}></ItemTileBig>
-                    <ItemTileBig itemName= "Agents" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/characters/customplayer_ctm_fbi_variantb_png.png"} navigation={navigation}></ItemTileBig>
-                    <ItemTileBig itemName= "Tournament stickers" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_cph2024_contenders_png.png"} navigation={navigation}></ItemTileBig>
-                    <ItemTileBig itemName= "Graffities" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/stickers/valve_sprays/howling_dawn_png.png"} navigation={navigation}></ItemTileBig>
-                    <ItemTileBig itemName= "Music kits" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/music_kits/timhuling_01_png.png"} navigation={navigation}></ItemTileBig>
+                    <CategoryTile itemName= "Cases" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_community_30_png.png"} navigation={navigation}></CategoryTile>
+                    <CategoryTile itemName= "Collections" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/set_icons/set_op10_ancient_png.png"} navigation={navigation}></CategoryTile>
+                    <CategoryTile itemName= "Agents" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/characters/customplayer_ctm_fbi_variantb_png.png"} navigation={navigation}></CategoryTile>
+                    <CategoryTile itemName= "Tournament stickers" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/weapon_cases/crate_sticker_pack_cph2024_contenders_png.png"} navigation={navigation}></CategoryTile>
+                    <CategoryTile itemName= "Graffities" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/stickers/valve_sprays/howling_dawn_png.png"} navigation={navigation}></CategoryTile>
+                    <CategoryTile itemName= "Music kits" itemImage={"https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/music_kits/timhuling_01_png.png"} navigation={navigation}></CategoryTile>
                 </View>
             </ScrollView>
         </View>
