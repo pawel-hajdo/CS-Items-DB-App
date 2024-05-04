@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import ItemQualityBar from "./ItemQualityBar";
+import ItemRarityBar from "./ItemRarityBar";
 const CategoryTile = ({itemName, itemImage, navigation}) => {
 
     const navigateToCategorySearch = (categoryName) => {

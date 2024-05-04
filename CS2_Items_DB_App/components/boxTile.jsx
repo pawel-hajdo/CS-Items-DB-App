@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import ItemQualityBar from "./ItemQualityBar";
+import ItemRarityBar from "./ItemRarityBar";
 const BoxTile = ({boxName, boxImage, navigation}) => {
 
     const navigateToBoxItems = (boxName) => {
