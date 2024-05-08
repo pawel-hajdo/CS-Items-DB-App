@@ -14,6 +14,7 @@ const CategorySearchPage = ({ route, navigation }) => {
     const {category} = route.params;
     const [categoryData, setCategoryData] = useState([]);
 
+    //TODO refactor this
     useEffect(() => {
         switch (category) {
             case "Cases":
@@ -35,11 +36,26 @@ const CategorySearchPage = ({ route, navigation }) => {
                 });
                 break;
             case "Graffiti":
-                getGraffitiFromApi().then(setCategoryData);
+                getCratesFromApi().then(data => {
+                    const filteredData = data.filter(item => item.type === "Graffiti");
+                    setCategoryData(filteredData);
+                });
                 break;
             case "Music kits":
                 getCratesFromApi().then(data => {
                     const filteredData = data.filter(item => item.type === "Music Kit Box");
+                    setCategoryData(filteredData);
+                });
+                break;
+            case "Patch Capsule":
+                getCratesFromApi().then(data => {
+                    const filteredData = data.filter(item => item.type === "Patch Capsule");
+                    setCategoryData(filteredData);
+                });
+                break;
+            case "Autograph Capsule":
+                getCratesFromApi().then(data => {
+                    const filteredData = data.filter(item => item.type === "Autograph Capsule");
                     setCategoryData(filteredData);
                 });
                 break;
