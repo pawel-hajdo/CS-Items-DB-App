@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createStackNavigator } from '@react-navigation/stack';
 import CategorySearchPage from "../screens/CategorySearchPage";
 import boxItemsPage from "../screens/BoxItemsPage";
+import itemDetailsPage from "../screens/ItemDetailsPage";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,7 @@ function StackNavigation() {
             <Stack.Screen name="Home" component={HomePage}/>
             <Stack.Screen name="CategorySearch" component={CategorySearchPage}/>
             <Stack.Screen name="BoxItemsPage" component={boxItemsPage}/>
+            <Stack.Screen name="ItemDetailsPage" component={itemDetailsPage}/>
         </Stack.Navigator>
         )
 }

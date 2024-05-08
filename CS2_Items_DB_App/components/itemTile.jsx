@@ -2,8 +2,13 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import ItemRarityBar from "./ItemRarityBar";
 const ItemTile = ({itemName, itemImage, itemRarity, navigation}) => {
 
+    const navigateToItemDetailsScreen = (itemName) => {
+        navigation.navigate("ItemDetailsPage", {itemName: itemName, itemImage: itemImage, itemRarity: itemRarity});
+    }
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container}
+            onPress={()=>navigateToItemDetailsScreen(itemName)}
+        >
             <Text style={styles.itemName}>{itemName}</Text>
             <Image source={{ uri: itemImage }} style={styles.itemImage} />
             <ItemRarityBar quality = {itemRarity}></ItemRarityBar>
