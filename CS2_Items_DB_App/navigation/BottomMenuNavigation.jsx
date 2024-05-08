@@ -17,7 +17,7 @@ function StackNavigation() {
                 headerShown: false
             }}
         >
-            <Stack.Screen name="Home" component={HomePage}/>
+            <Stack.Screen name="Home2" component={HomePage}/>
             <Stack.Screen name="CategorySearch" component={CategorySearchPage}/>
             <Stack.Screen name="BoxItemsPage" component={boxItemsPage}/>
             <Stack.Screen name="ItemDetailsPage" component={itemDetailsPage}/>
