@@ -1,5 +1,5 @@
 import {globalStyles} from "../styles/globalStyles";
-import {View, Text, Image, StyleSheet} from "react-native";
+import {View, Text, Image, StyleSheet, ScrollView} from "react-native";
 import {useEffect, useState} from "react";
 import {getSkinsFromApi} from "../api/SkinsApiManager";
 import ItemRarityBar from "../components/ItemRarityBar";
@@ -20,7 +20,7 @@ const ItemDetailsPage = ({ route, navigation })  => {
     return (
         <View style={[globalStyles.container, {paddingLeft: 0}, {paddingRight: 0}]}>
             <Image source={{ uri: itemImage }} style={styles.itemImage} resizeMode="contain"/>
-            <View style={styles.detailsContainer}>
+            <ScrollView style={styles.detailsContainer}>
                 <Text style={styles.itemName}>{itemName}</Text>
                 <ItemRarityBar quality = {itemRarity}/>
 
@@ -41,9 +41,28 @@ const ItemDetailsPage = ({ route, navigation })  => {
                     )}
                 </View>
 
-                <Text style={globalStyles.secondaryText}>Description</Text>
+                <Text style={styles.sectionHeader}>Description</Text>
                 <Text style={styles.itemDescription}>{itemDetails.description}</Text>
-            </View>
+
+                <View style={styles.floatContainer}>
+                    <Text style={styles.sectionHeader}>Float range:</Text>
+                    <Text style={styles.floatValue}>{itemDetails.min_float} - {itemDetails.max_float}</Text>
+                </View>
+                <View style={styles.priceContainer}>
+                    <View style={styles.priceItem}>
+                        <Text style={styles.sectionHeader}>Volume (24h):</Text>
+                        <Text style={styles.itemDescription}>{itemDetails.volume}</Text>
+                    </View>
+                    <View style={styles.priceItem}>
+                        <Text style={styles.sectionHeader}>Price:</Text>
+                        <Text style={styles.itemDescription}>{itemDetails.price} PLN</Text>
+                    </View>
+                    <View style={styles.priceItem}>
+                        <Text style={styles.sectionHeader}>Median:</Text>
+                        <Text style={styles.itemDescription}>{itemDetails.median} PLN</Text>
+                    </View>
+                </View>
+            </ScrollView>
         </View>
     );
 }
@@ -51,11 +70,9 @@ const ItemDetailsPage = ({ route, navigation })  => {
 const styles = StyleSheet.create({
     detailsContainer: {
         backgroundColor: '#15141F',
-        height: "100%",
-        width: "100%",
-        borderRadius: 30,
-        paddingLeft: 16,
-        paddingRight: 16,
+        borderRadius: 10,
+        padding: 16,
+        flex: 1,
     },
     itemName: {
         color: '#FFFFFF',
@@ -77,9 +94,26 @@ const styles = StyleSheet.create({
         marginTop: 8,
     },
     collectionsContainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
-    }
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        marginVertical: 16,
+    },
+    sectionHeader: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginTop: 8,
+    },
+    floatContainer: {
+        flexDirection: 'row',
+        marginVertical: 16,
+    },
+    floatValue: {
+        color: '#FFFFFF',
+        marginTop: 8,
+        marginLeft: 10,
+        fontSize: 16,
+    },
 });
 export default ItemDetailsPage;
