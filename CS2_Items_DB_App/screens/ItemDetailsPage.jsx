@@ -5,17 +5,53 @@ import {getSkinsFromApi} from "../api/SkinsApiManager";
 import ItemRarityBar from "../components/ItemRarityBar";
 import ItemTile from "../components/itemTile";
 import BoxTile from "../components/boxTile";
+import {getPriceForItem} from "../api/SkinPricesApiManager";
+
+
+const wears = [
+    {name: "Factory New" },
+    {name: "Minimal Wear" },
+    {name: "Field-Tested" },
+    {name: "Well-Worn" },
+    {name: "Battle-Scarred" }
+];
 
 const ItemDetailsPage = ({ route, navigation })  => {
     const {itemName, itemImage, itemRarity} = route.params;
     const [itemDetails, setItemDetails] = useState([]);
+    const [marketData, setMarketData] = useState([]);
+
     useEffect(() => {
         getSkinsFromApi().then(data=> {
             const details = data.find(item=>item.name === itemName)
             console.log(details);
             setItemDetails(details);
         })
+
+        getPrices();
     }, []);
+
+    const getPrices = async () => {
+        const prices = await Promise.all(wears.map(async wear => {
+            const response = await getPriceForItem(`${itemName} (${wear.name})`);
+            if (response.success) {
+                return {
+                    wear: wear.name,
+                    lowest_price: response.lowest_price,
+                    volume: response.volume,
+                    median_price: response.median_price
+                };
+            }
+            return {
+                wear: wear.name,
+                lowest_price: "N/A",
+                volume: "N/A",
+                median_price: "N/A"
+            };
+        }));
+        console.log(prices);
+        setMarketData(prices);
+    };
 
     return (
         <View style={[globalStyles.container, {paddingLeft: 0}, {paddingRight: 0}]}>
