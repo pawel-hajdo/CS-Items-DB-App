@@ -1,7 +1,10 @@
-import {Text} from "react-native";
+import {Text, View} from "react-native";
+import {globalStyles} from "../styles/globalStyles";
 const WatchlistPage = ({ navigation })  => {
     return (
-      <Text>Watchlist</Text>
+        <View style={globalStyles.container}>
+            <Text style={[globalStyles.headlineText, {paddingTop: 8}]}>Watchlist</Text>
+        </View>
     );
 }
 

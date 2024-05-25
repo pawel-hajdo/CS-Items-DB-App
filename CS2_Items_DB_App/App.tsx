@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import BottomMenuNavigation from "./navigation/BottomMenuNavigation.jsx";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -47,7 +47,7 @@ function App(): React.JSX.Element {
         await AsyncStorage.setItem("musicKits", JSON.stringify(musicKits));
     }
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={DarkTheme}>
           <BottomMenuNavigation/>
       </NavigationContainer>
     );

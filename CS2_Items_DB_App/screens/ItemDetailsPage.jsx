@@ -1,5 +1,5 @@
 import {globalStyles} from "../styles/globalStyles";
-import {View, Text, Image, StyleSheet, ScrollView, FlatList} from "react-native";
+import {View, Text, Image, StyleSheet, ScrollView, FlatList, TouchableOpacity} from "react-native";
 import React, {useEffect, useState} from "react";
 import {getSkinsFromApi} from "../api/SkinsApiManager";
 import ItemRarityBar from "../components/ItemRarityBar";
@@ -7,7 +7,7 @@ import ItemTile from "../components/itemTile";
 import BoxTile from "../components/boxTile";
 import {getPriceForItem} from "../api/SkinPricesApiManager";
 import PriceTableRow from "../components/priceTableRow";
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const wears = [
     {name: "Factory New" },
@@ -54,13 +54,20 @@ const ItemDetailsPage = ({ route, navigation })  => {
         setMarketData(prices);
     };
 
+    const addToWatchlist = () => {
+        // Logika dodawania itemu do watchlisty
+        console.log(`${itemName} added to watchlist`);
+    };
+
     return (
         <View style={[globalStyles.container, {paddingLeft: 0}, {paddingRight: 0}]}>
+            <TouchableOpacity onPress={() => addToWatchlist()} style={styles.watchlistIcon}>
+                <Icon name="heart-outline" size={32} color="#fff"/>
+            </TouchableOpacity>
             <Image source={{ uri: itemImage }} style={styles.itemImage} resizeMode="contain"/>
             <ScrollView style={styles.detailsContainer}>
                 <Text style={styles.itemName}>{itemName}</Text>
                 <ItemRarityBar quality = {itemRarity}/>
-
                 <View style={styles.collectionsContainer}>
                     {itemDetails.collections && itemDetails.collections.length > 0 && (
                         <>
@@ -113,7 +120,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 8,
         marginBottom: 8,
-        textAlign: "center"
+        textAlign: "center",
+    },
+    watchlistIcon: {
+        position: "absolute",
+        right: 8,
+        top: 8,
+        zIndex: 5
     },
     itemImage: {
         marginTop: 16,
