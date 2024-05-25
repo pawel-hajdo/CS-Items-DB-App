@@ -1,11 +1,12 @@
 import {globalStyles} from "../styles/globalStyles";
-import {View, Text, Image, StyleSheet, ScrollView} from "react-native";
-import {useEffect, useState} from "react";
+import {View, Text, Image, StyleSheet, ScrollView, FlatList} from "react-native";
+import React, {useEffect, useState} from "react";
 import {getSkinsFromApi} from "../api/SkinsApiManager";
 import ItemRarityBar from "../components/ItemRarityBar";
 import ItemTile from "../components/itemTile";
 import BoxTile from "../components/boxTile";
 import {getPriceForItem} from "../api/SkinPricesApiManager";
+import PriceTableRow from "../components/priceTableRow";
 
 
 const wears = [
@@ -84,19 +85,15 @@ const ItemDetailsPage = ({ route, navigation })  => {
                     <Text style={styles.sectionHeader}>Float range:</Text>
                     <Text style={styles.floatValue}>{itemDetails.min_float} - {itemDetails.max_float}</Text>
                 </View>
-                <View style={styles.priceContainer}>
-                    <View style={styles.priceItem}>
-                        <Text style={styles.sectionHeader}>Volume (24h):</Text>
-                        <Text style={styles.itemDescription}>{itemDetails.volume}</Text>
-                    </View>
-                    <View style={styles.priceItem}>
-                        <Text style={styles.sectionHeader}>Price:</Text>
-                        <Text style={styles.itemDescription}>{itemDetails.price} PLN</Text>
-                    </View>
-                    <View style={styles.priceItem}>
-                        <Text style={styles.sectionHeader}>Median:</Text>
-                        <Text style={styles.itemDescription}>{itemDetails.median} PLN</Text>
-                    </View>
+                <View style={styles.priceTable}>
+                    {marketData.map((item)=> (
+                        <PriceTableRow
+                            id={item.wear}
+                            wear = {item.wear}
+                            lowest_price={item.lowest_price}
+                            volume = {item.volume}
+                            median_price = {item.median_price}/>
+                    ))}
                 </View>
             </ScrollView>
         </View>
@@ -151,5 +148,8 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 16,
     },
+    priceTable: {
+        marginBottom: 16,
+    }
 });
 export default ItemDetailsPage;
