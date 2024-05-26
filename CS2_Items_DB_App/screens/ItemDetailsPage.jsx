@@ -8,6 +8,7 @@ import BoxTile from "../components/boxTile";
 import {getPriceForItem} from "../api/SkinPricesApiManager";
 import PriceTableRow from "../components/priceTableRow";
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const wears = [
     {name: "Factory New" },
@@ -18,9 +19,10 @@ const wears = [
 ];
 
 const ItemDetailsPage = ({ route, navigation })  => {
-    const {itemName, itemImage, itemRarity} = route.params;
+    const {itemName, itemImage, itemRarity, itemId} = route.params;
     const [itemDetails, setItemDetails] = useState([]);
     const [marketData, setMarketData] = useState([]);
+    const [isInWatchlist, setIsInWatchlist] = useState(false);
 
     useEffect(() => {
         getSkinsFromApi().then(data=> {
@@ -30,6 +32,7 @@ const ItemDetailsPage = ({ route, navigation })  => {
         })
 
         getPrices();
+        checkIfInWatchlist();
     }, []);
 
     const getPrices = async () => {
@@ -54,15 +57,46 @@ const ItemDetailsPage = ({ route, navigation })  => {
         setMarketData(prices);
     };
 
-    const addToWatchlist = () => {
-        // Logika dodawania itemu do watchlisty
-        console.log(`${itemName} added to watchlist`);
+    const checkIfInWatchlist = async () => {
+        try {
+            const currentWatchlist = await AsyncStorage.getItem('watchlist');
+            let watchlist = currentWatchlist ? JSON.parse(currentWatchlist) : [];
+            const isInList = watchlist.some(item => item.name === itemName);
+            console.log(isInList);
+            setIsInWatchlist(isInList);
+        } catch (error) {
+            console.error('Failed to check watchlist', error);
+        }
+    };
+
+    const toggleWatchlist = async () => {
+        try {
+            const watchlistItem = {
+                id: itemId,
+                name: itemName,
+                image: itemImage,
+                rarity: itemRarity
+            };
+            const currentWatchlist = await AsyncStorage.getItem('watchlist');
+            console.log(currentWatchlist);
+            let watchlist = currentWatchlist ? JSON.parse(currentWatchlist) : [];
+            if (isInWatchlist) {
+                watchlist = watchlist.filter(item => item.name !== itemName);
+                setIsInWatchlist(false);
+            } else {
+                watchlist.push(watchlistItem);
+                setIsInWatchlist(true);
+            }
+            await AsyncStorage.setItem('watchlist', JSON.stringify(watchlist));
+        } catch (error) {
+            console.error('Failed to update watchlist', error);
+        }
     };
 
     return (
         <View style={[globalStyles.container, {paddingLeft: 0}, {paddingRight: 0}]}>
-            <TouchableOpacity onPress={() => addToWatchlist()} style={styles.watchlistIcon}>
-                <Icon name="heart-outline" size={32} color="#fff"/>
+            <TouchableOpacity onPress={() => toggleWatchlist()} style={styles.watchlistIcon}>
+                <Icon name={isInWatchlist ? "heart" : "heart-outline"} size={32} color={isInWatchlist ? "red" : "#fff"} />
             </TouchableOpacity>
             <Image source={{ uri: itemImage }} style={styles.itemImage} resizeMode="contain"/>
             <ScrollView style={styles.detailsContainer}>
@@ -95,7 +129,7 @@ const ItemDetailsPage = ({ route, navigation })  => {
                 <View style={styles.priceTable}>
                     {marketData.map((item)=> (
                         <PriceTableRow
-                            id={item.wear}
+                            key={item.wear}
                             wear = {item.wear}
                             lowest_price={item.lowest_price}
                             volume = {item.volume}

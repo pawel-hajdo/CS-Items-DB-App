@@ -55,7 +55,7 @@ function App(): React.JSX.Element {
 export const getFromAsyncStorage = async (key: string) => {
     try{
         const itemsString = await AsyncStorage.getItem(key);
-        //console.log(cratesString);
+        console.log(itemsString);
         return itemsString ? JSON.parse(itemsString) : [];
     } catch (error) {
         console.error(error);

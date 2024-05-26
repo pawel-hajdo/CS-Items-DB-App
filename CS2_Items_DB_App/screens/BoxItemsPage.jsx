@@ -27,7 +27,7 @@ const BoxItemsPage = ({ route, navigation }) => {
             <ScrollView>
                 <View style={styles.boxContainer}>
                     {boxItems.map((item)=>(
-                        <ItemTile key={item.id} itemName={item.name} itemImage={item.image} itemRarity={item.rarity} navigation={navigation}/>
+                        <ItemTile key={item.id} itemName={item.name} itemImage={item.image} itemRarity={item.rarity} itemId = {item.id} navigation={navigation}/>
                     ))}
                 </View>
             </ScrollView>
