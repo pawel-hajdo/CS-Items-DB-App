@@ -68,7 +68,7 @@ const CategorySearchPage = ({ route, navigation }) => {
             <Text style={[globalStyles.headlineText, {paddingTop: 8}]}>{category}</Text>
             <ScrollView>
                 <View style={styles.boxContainer}>
-                    {categoryData.map((item) => (
+                    {[...categoryData].reverse().map((item) => (
                         <BoxTile key={item.id} boxName={item.name} boxImage={item.image} navigation={navigation}/>
                     ))
                     }
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         flexWrap: "wrap",
+        paddingBottom: 8,
     }
 })
 export default CategorySearchPage;
