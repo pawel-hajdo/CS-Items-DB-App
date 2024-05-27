@@ -11,6 +11,7 @@ import {
     getSkinsFromApi,
     getStickersFromApi
 } from "./api/SkinsApiManager.js";
+import SplashScreen from "react-native-splash-screen";
 
 function App(): React.JSX.Element {
 
@@ -34,6 +35,8 @@ function App(): React.JSX.Element {
         getMusicKitsFromApi().then(setMusicKits);
 
         saveToAsyncStorage();
+
+        SplashScreen.hide();
     },[])
 
     const saveToAsyncStorage = async () => {
