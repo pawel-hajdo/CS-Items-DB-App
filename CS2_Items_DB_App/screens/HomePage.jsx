@@ -2,7 +2,21 @@ import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {globalStyles} from "../styles/globalStyles";
 import BoxTile from "../components/boxTile";
 import CategoryTile from "../components/CategoryTile";
+import {useEffect, useState} from "react";
+import {useIsFocused} from "@react-navigation/native";
+import {getFromAsyncStorage} from "../App";
+import ItemTile from "../components/itemTile";
 const HomePage = ({ navigation }) => {
+
+    const [watchlistItems, setWatchlistItems] = useState([]);
+
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        if (isFocused) {
+            getFromAsyncStorage('watchlist').then(setWatchlistItems);
+        }
+    }, [isFocused]);
 
     return (
         <View style={globalStyles.container}>
@@ -16,13 +30,24 @@ const HomePage = ({ navigation }) => {
                 </View>
                 <View style={styles.watchlistText}>
                     <Text style={globalStyles.headlineText}>From your watchlist</Text>
-                    <Text style={globalStyles.secondaryText}>Go to watchlist</Text>
                 </View>
                 <View style={styles.watchListContainer}>
-                    <Text style={{fontSize: 12, color: '#FFFFFF'}}>
-                        There is nothing here :(((
-                        Go add something to your watchlist
-                    </Text>
+                    {watchlistItems.length === 0 ? (
+                        <Text style={{fontSize: 12, color: '#FFFFFF'}}>
+                            There is nothing here :(((
+                            Go add something to your watchlist
+                        </Text>
+                    ) : (
+                        watchlistItems.slice(-3).map((item) => (
+                            <ItemTile
+                                key={item.name}
+                                itemName={item.name}
+                                itemImage={item.image}
+                                itemRarity={item.rarity}
+                                navigation={navigation}
+                            />
+                        ))
+                    )}
                 </View>
                 <Text style={globalStyles.headlineText}>Search for</Text>
                 <View style={styles.rowContainer}>
@@ -42,7 +67,6 @@ const HomePage = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     rowContainer: {
-       // paddingTop: 8,
         paddingBottom: 8,
         flexDirection: "row",
         justifyContent: "space-around",
@@ -55,12 +79,13 @@ const styles = StyleSheet.create({
     watchListContainer: {
         backgroundColor: '#15141F',
         width: "100%",
-        height: 50,
         borderRadius: 10,
-        justifyContent: "center",
         alignItems: "center",
         padding: 4,
-        marginTop: 4
+        marginTop: 4,
+        flexDirection: "row",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
     }
 });
 export default HomePage;

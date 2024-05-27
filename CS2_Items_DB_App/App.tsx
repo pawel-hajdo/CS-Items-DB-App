@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import BottomMenuNavigation from "./navigation/BottomMenuNavigation.jsx";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,6 +11,7 @@ import {
     getSkinsFromApi,
     getStickersFromApi
 } from "./api/SkinsApiManager.js";
+import SplashScreen from "react-native-splash-screen";
 
 function App(): React.JSX.Element {
 
@@ -34,6 +35,8 @@ function App(): React.JSX.Element {
         getMusicKitsFromApi().then(setMusicKits);
 
         saveToAsyncStorage();
+
+        SplashScreen.hide();
     },[])
 
     const saveToAsyncStorage = async () => {
@@ -47,7 +50,7 @@ function App(): React.JSX.Element {
         await AsyncStorage.setItem("musicKits", JSON.stringify(musicKits));
     }
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={DarkTheme}>
           <BottomMenuNavigation/>
       </NavigationContainer>
     );
@@ -55,7 +58,7 @@ function App(): React.JSX.Element {
 export const getFromAsyncStorage = async (key: string) => {
     try{
         const itemsString = await AsyncStorage.getItem(key);
-        //console.log(cratesString);
+        console.log(itemsString);
         return itemsString ? JSON.parse(itemsString) : [];
     } catch (error) {
         console.error(error);

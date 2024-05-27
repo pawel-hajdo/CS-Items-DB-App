@@ -26,8 +26,8 @@ const BoxItemsPage = ({ route, navigation }) => {
             <Text style={[globalStyles.headlineText, {paddingTop: 8}]}>{boxName}</Text>
             <ScrollView>
                 <View style={styles.boxContainer}>
-                    {boxItems.map((item)=>(
-                        <ItemTile key={item.id} itemName={item.name} itemImage={item.image} itemRarity={item.rarity} navigation={navigation}/>
+                    {[...boxItems].reverse().map((item)=>(
+                        <ItemTile key={item.id} itemName={item.name} itemImage={item.image} itemRarity={item.rarity} itemId = {item.id} navigation={navigation}/>
                     ))}
                 </View>
             </ScrollView>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         flexWrap: "wrap",
+        paddingBottom: 8,
     }
 })
 export default BoxItemsPage;
